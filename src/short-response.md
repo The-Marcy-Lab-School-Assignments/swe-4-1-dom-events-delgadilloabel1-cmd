@@ -26,7 +26,7 @@ Examine the HTML code below:
 In the `index.js` file, they have the code:
 
 ```js
-document.querySelector('#my-button').style.color = 'red';
+document.querySelector("#my-button").style.color = "red";
 ```
 
 But an error is thrown.
@@ -42,7 +42,7 @@ But an error is thrown.
 Consider this HTML:
 
 ```html
-<div id='button-container'>
+<div id="button-container">
   <button>Click Me</button>
 </div>
 ```
@@ -50,8 +50,8 @@ Consider this HTML:
 And this JavaScript:
 
 ```js
-const div = document.querySelector('#button-container');
-div.addEventListener('click', (event) => {
+const div = document.querySelector("#button-container");
+div.addEventListener("click", (event) => {
   console.log(event.target);
   console.log(event.currentTarget);
 });
@@ -61,16 +61,29 @@ When a user clicks the button, both `event.target` and `event.currentTarget` are
 
 **Your Answer:**
 
+When you click the button, both logs show up because the click event **bubbles**.
+
+- **`event.target`** is the exact element you clicked. So if you clicked the button, `event.target` is the button itself.
+- **`event.currentTarget`** is the element that the event listener is **attached to**. In this case, that's the `#button-container` div.
+  They're different because the click **starts on the button**, then **bubbles up** to the div, which is where your listener is listening. So the div "handles" the event even though it didn't originate there.
+  If you clicked directly on the div instead of the button, then both values would be the same.
+
+Think of it like a group chat 📱
+
+-**`target`** = who sent the message
+
+- **`currentTarget`** = the chat where the message was sent
+
 ## Question 3: Creating Elements Dynamically
 
 Look at the JavaScript code below that is attempting to create a product card dynamically and add it to the body.
 
 ```js
 const product = {
-  name: 'iPhone 17',
+  name: "iPhone 17",
   price: 1099.99,
-  img: './images/iphone17.png'
-}
+  img: "./images/iphone17.png",
+};
 
 /* Desired structure: 
 <div>
@@ -80,10 +93,10 @@ const product = {
 </div>
 */
 
-const productCard = document.createElement('div');
-const productImage = document.createElement('img');
-const productName = document.createElement('h3');
-const productPrice = document.createElement('p');
+const productCard = document.createElement("div");
+const productImage = document.createElement("img");
+const productName = document.createElement("h3");
+const productPrice = document.createElement("p");
 
 productImage.src = product.img;
 productName.textContent = product.name;
@@ -96,7 +109,6 @@ However, when the page loads and the code is executed, the user isn't able to se
 
 **Your Answer:**
 
-
 ## Question 4: Event Delegation and event.target.closest()
 
 Consider this HTML:
@@ -104,16 +116,16 @@ Consider this HTML:
 ```html
 <ul id="todo-list">
   <li id="todo-1">
-    <p class='description'>Walk the dog</p>
-    <p class='is-complete'>✅</p>
+    <p class="description">Walk the dog</p>
+    <p class="is-complete">✅</p>
   </li>
   <li id="todo-2">
-    <p class='description'>Take out the trash</p>
-    <p class='is-complete'>❌</p>
+    <p class="description">Take out the trash</p>
+    <p class="is-complete">❌</p>
   </li>
   <li id="todo-3">
-    <p class='description'>Wash the dishes</p>
-    <p class='is-complete'>❌</p>
+    <p class="description">Wash the dishes</p>
+    <p class="is-complete">❌</p>
   </li>
 </ul>
 ```
@@ -121,13 +133,13 @@ Consider this HTML:
 And this JavaScript:
 
 ```js
-const todoList = document.querySelector('#todo-list');
-todoList.addEventListener('click', (event) => {
-  const clickedLi = event.target.closest('li');
+const todoList = document.querySelector("#todo-list");
+todoList.addEventListener("click", (event) => {
+  const clickedLi = event.target.closest("li");
 
   if (!clickedLi) return;
 
-  clickedLi.querySelector('.is-complete').textContent = "✅";
+  clickedLi.querySelector(".is-complete").textContent = "✅";
 });
 ```
 
