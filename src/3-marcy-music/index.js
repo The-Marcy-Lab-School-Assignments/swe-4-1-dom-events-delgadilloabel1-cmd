@@ -55,6 +55,17 @@ playlists.forEach((playlist) => {
 
 playlistGrid.addEventListener("click", (event) => {
   const playlistCard = event.target.closest("li");
-  playlistCard.classList.toggle("selected");
-  playlistCard.classList.
+
+  if (!playlistCard) return;
+
+  playlistCard.classList.add("selected");
+
+  const nowPlaying = document.getElementById("now-playing-title");
+  nowPlaying.textContent = playlistCard.dataset.title;
+
+  document.querySelectorAll(".playlist-card").forEach((card) => {
+    if (card !== playlistCard) {
+      card.classList.remove("selected");
+    }
+  });
 });
