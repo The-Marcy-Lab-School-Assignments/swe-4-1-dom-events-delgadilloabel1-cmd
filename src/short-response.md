@@ -37,6 +37,8 @@ But an error is thrown.
 
 **Your Answer:**
 
+The error thrown is a **TypeError** because `document.querySelector("#my-button")` returns `null`, so the code tries to access the `style` property of an element that does not exist yet. This happens because the JavaScript file is loaded in the `<head>` before the browser has finished parsing the HTML. Moving the `<script>` tag to the bottom of the `<body>` ensures the button element is loaded before the JavaScript runs, fixing the error.
+
 ## Question 2: event.target vs event.currentTarget
 
 Consider this HTML:
@@ -109,6 +111,8 @@ However, when the page loads and the code is executed, the user isn't able to se
 
 **Your Answer:**
 
+The issue is that the image, heading, and paragraph elements are created but never appended to the `productCard` div. Only the empty `productCard` is added to the document, so none of its child elements appear on the page. To fix this, the `img`, `h3`, and `p` elements must be appended to `productCard` before appending the card to the `document.body`.
+
 ## Question 4: Event Delegation and event.target.closest()
 
 Consider this HTML:
@@ -147,6 +151,8 @@ todoList.addEventListener("click", (event) => {
 2. Explain what the `event.target.closest('li')` method does and why it is essential to this approach.
 
 **Your Answer:**
+
+This approach is called **event delegation**, where a single event listener is attached to a parent element instead of individual child elements. The alternative is adding separate event listeners to each `<li>`, but event delegation is better because it reduces the number of listeners and continues to work even if new list items are added dynamically. The `event.target.closest("li")` method finds the nearest parent `<li>` of the element that was clicked, ensuring the correct todo item is selected. This is essential because clicks often occur on child elements, such as the `<p>` tags, rather than directly on the `<li>` itself.
 
 ## Question 5: NodeList
 
