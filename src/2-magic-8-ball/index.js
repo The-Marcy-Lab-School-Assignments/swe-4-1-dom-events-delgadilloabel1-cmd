@@ -20,7 +20,7 @@ const fortunes = [
   "My sources say no",
   "Outlook not so good",
   "Very doubtful",
-]
+];
 
 /* 
 TODO:
@@ -29,3 +29,12 @@ TODO:
   - [ ] generates a random fortune from the fortunes array
   - [ ] shows the fortune in the answer element
 */
+const ask = document.querySelector("#ask-btn");
+const eight = document.querySelector("#eight");
+const answer = document.querySelector("#answer");
+
+ask.addEventListener("click", () => {
+  eight.style.display = "none";
+  answer.style.display = "block";
+  answer.textContent = fortunes[Math.floor(Math.random() * fortunes.length)];
+});

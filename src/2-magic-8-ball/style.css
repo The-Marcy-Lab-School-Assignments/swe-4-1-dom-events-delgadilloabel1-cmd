@@ -46,7 +46,7 @@ body {
 
 #answer {
   /* Hides the element by default */
-  display: none; 
+  display: none;
   font-size: 1.5rem;
   background: blue;
   color: white;
