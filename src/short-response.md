@@ -162,3 +162,6 @@ Do some independent learning and reading about the `querySelectorAll()` method. 
 2. What is the difference between a `NodeList` and an array? Why is it important to know this difference?
 
 **Your Answer:**
+`querySelector()` only grabs the very first element that matches a CSS selector, while `querySelectorAll()` finds every single matching element on the page and returns them in a collection. you'd use `querySelectorAll()` when you want to do something to a whole bunch of items at once, like adding a click event listener to every single button in a list.
+
+The biggest difference between a NodeList and a regular array is that a NodeList is a collection of DOM nodes and doesn't have built-in array methods like `.map()`, `.filter()`, or `.reduce()`, though it does support `.forEach()`. it's super important to know this because if you try to use an unsupported array method directly on a NodeList, your code will crash unless you convert it into a real array first using `Array.from()` or the spread operator.
